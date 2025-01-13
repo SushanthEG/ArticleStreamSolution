@@ -1,0 +1,23 @@
+﻿@page "/article/{id:int}"
+@using ArticleStream.Model
+@using ArticleStream.Service
+@inject DisplayArticleService displayArticleService
+
+<h3>Article Details</h3>
+
+@if (Article == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            <h4>@Article.Title</h4>
+        </div>
+        <div class="card-body">
+            <p>@Article.Summary</p>
+            <p>@Article.FullText</p>
+        </div>
+    </div>
+}

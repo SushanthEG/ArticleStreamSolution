@@ -1,0 +1,98 @@
+﻿
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.header {
+    text-align: center;
+    color: Black;
+    margin-top: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.loading, .no-articles {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.article-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .article-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+.article-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.article-title {
+    font-size: 1.5rem;
+    margin: 16px;
+    color: #333;
+}
+
+.article-summary {
+    font-size: 1rem;
+    margin: 0 16px 16px;
+    color: #666;
+}
+
+.read-more {
+    background-color: darkolivegreen;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 16px;
+}
+
+    .read-more:hover {
+        background-color: greenyellow;
+    }
+
+.error {
+    color: #dc3545;
+    font-size: 1.2em;
+    margin: 20px;
+    border: 1px solid #dc3545;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+    .error button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .error button:hover {
+            background-color: #c82333;
+        }
