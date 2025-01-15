@@ -12,12 +12,22 @@
 else
 {
     <div class="card">
-        <div class="card-header">
-            <h4>@Article.Title</h4>
-        </div>
-        <div class="card-body">
-            <p>@Article.Summary</p>
-            <p>@Article.FullText</p>
+        <div class="card-inner">
+            <!-- Front Side -->
+            <div class="card-front">
+                <div class="card-header">
+                    <h4>@Article.Title</h4>
+                </div>
+                <div class="card-body">
+                    <img src="/images/image_@(Id).jpg" alt="Article Image" class="card-image" />
+                </div>
+                <div class="card-footer">
+                    <p>@Article.FullText</p>
+                </div>
+                <div class="card-footer">
+                    <p>@Article.Summary</p>
+                </div>
+            </div>
         </div>
     </div>
 }
