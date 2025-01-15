@@ -6,13 +6,12 @@ namespace ArticleStream.Pages;
 
 public partial class DisplayArticlesList : ComponentBase
 {
-
     private ComponentState currentState = ComponentState.Loading;
     private string errorMessage = string.Empty;
     protected List<ArticleModel>? articles;
 
     [Inject]
-    private DisplayArticleService displayArticleService { get; set; } = default!;
+    private DisplayArticleService DisplayArticleService { get; set; } = default!;
 
     [Inject]
     private NavigationManager NavigationManager { get; set; } = default!;
@@ -22,10 +21,15 @@ public partial class DisplayArticlesList : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
+        await LoadArticlesAsync();
+    }
+
+    private async Task LoadArticlesAsync()
+    {
         try
         {
             currentState = ComponentState.Loading;
-            articles = await displayArticleService.FetchArticleAsync();
+            articles = await DisplayArticleService.FetchArticleAsync();
 
             if (articles != null && articles.Any())
             {
@@ -33,16 +37,20 @@ public partial class DisplayArticlesList : ComponentBase
             }
             else
             {
-                currentState = ComponentState.Error;
-                errorMessage = "No articles available.";
+                SetErrorState("No articles available.");
             }
         }
         catch (Exception ex)
         {
-            currentState = ComponentState.Error;
-            errorMessage = $"Error loading articles: {ex.Message}";
+            SetErrorState($"Error loading articles: {ex.Message}");
             ErrorLogger.LogError(ex);
         }
+    }
+
+    private void SetErrorState(string message)
+    {
+        currentState = ComponentState.Error;
+        errorMessage = message;
     }
 
     protected void SelectArticle(int id)
@@ -52,7 +60,7 @@ public partial class DisplayArticlesList : ComponentBase
 
     private async Task ReloadArticles()
     {
-        await OnInitializedAsync();
+        await LoadArticlesAsync();
         StateHasChanged();
     }
 }

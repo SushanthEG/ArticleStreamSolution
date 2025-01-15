@@ -3,28 +3,28 @@
 
 <h3 class="header" style="color:darkolivegreen">Featured Articles</h3>
 
-@if (currentState == ComponentState.Loading)
+@switch (currentState)
 {
-    <p class="loading">Loading articles...</p>
-}
-else if (currentState == ComponentState.Error)
-{
-    <div class="error">
-        <p>@errorMessage</p>
-        <button @onclick="ReloadArticles">Retry</button>
-    </div>
-}
-else if (currentState == ComponentState.Loaded)
-{
-    <div class="articles-grid">
-        @foreach (var article in articles.OrderBy(t => t.Id))
-        {
-            <div class="article-card">
-                <img src="@($"/images/image_{article.Id}.jpg")" alt="@article.Title" class="article-image" />
-                <h4 class="article-title">@article.Title</h4>
-                <p class="article-summary">@article.Summary</p>
-                <button class="read-more" @onclick="(() => SelectArticle(article.Id))">Read More</button>
-            </div>
-        }
-    </div>
+    case ComponentState.Loading:
+        <p class="loading">Loading articles...</p>
+        break;
+    case ComponentState.Error:
+        <div class="error">
+            <p>@errorMessage</p>
+            <button @onclick="ReloadArticles">Retry</button>
+        </div>
+        break;
+    case ComponentState.Loaded:
+        <div class="articles-grid">
+            @foreach (var article in articles.OrderBy(t => t.Id))
+            {
+                <div class="article-card">
+                    <img src="@($"/images/image_{article.Id}.jpg")" alt="@article.Title" class="article-image" />
+                    <h4 class="article-title">@article.Title</h4>
+                    <p class="article-summary">@article.Summary</p>
+                    <button class="read-more" @onclick="(() => SelectArticle(article.Id))">Read More</button>
+                </div>
+            }
+        </div>
+        break;
 }
